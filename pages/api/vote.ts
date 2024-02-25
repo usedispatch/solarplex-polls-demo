@@ -1,6 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import {Poll, POLL_EXPIRY} from "@/app/types";
 import {kv} from "@vercel/kv";
+console.log(require.resolve('@usedispatch/solarplex-frame-sdk'));
+
 import { FrameRequest, getFrameMessage, getFrameHtmlResponse } from '@usedispatch/solarplex-frame-sdk';
 
 // import {getSSLHubRpcClient, Message} from "@farcaster/hub-nodejs";

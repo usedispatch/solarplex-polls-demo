@@ -5,6 +5,11 @@ A example Poll app using [Farcaster Frames](https://warpcast.notion.site/Farcast
 This example lets you create a poll and have users vote on it. The FrameAction is authenticated against a hub 
 so the votes cannot be spoofed (if `HUB_URL` is provided), and the results are stored in a redis database. 
 
+## Images
+```
+yarn add sharp --ignore-engines
+```
+
 
 ## Demo
 
