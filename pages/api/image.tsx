@@ -12,7 +12,7 @@ let fontData = fs.readFileSync(fontPath)
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     try {
         const pollId = req.query['id']
-        // const fid = parseInt(req.query['fid']?.toString() || '')
+        const did = req.query['did']?.toString() || ''
         if (!pollId) {
             return res.status(400).send('Missing poll ID');
         }
@@ -25,10 +25,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         }
 
         const showResults = req.query['results'] === 'true'
-        // let votedOption: number | null = null
-        // if (showResults && fid > 0) {
-        //     votedOption = await kv.hget(`poll:${pollId}:votes`, `${fid}`) as number
-        // }
+        let votedOption: number | null = null
+        if (showResults && did) {
+            votedOption = await kv.hget(`poll:${pollId}:votes`, `${did}`) as number
+        }
 
         const pollOptions = [poll.option1, poll.option2, poll.option3, poll.option4]
             .filter((option) => option !== '');

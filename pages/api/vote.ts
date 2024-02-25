@@ -15,7 +15,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         // Process the vote
         // For example, let's assume you receive an option in the body
         try {
-            
             const pollId = req.query['id']
             const results = req.query['results'] === 'true'
             let voted = req.query['voted'] === 'true'
@@ -24,9 +23,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             }
             const body: FrameRequest = await req.body;
             const {message} = await getFrameMessage(body);
-            let buttonId = 0
-            // TODO(viksit): we'll get splx userId here and use that
-            let fid = 1
+            let buttonId = 0;
+            const did = req.body?.untrustedData?.did;
             buttonId = req.body?.untrustedData?.buttonIndex || 0;
             
             // Clicked create poll
@@ -34,13 +32,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 return res.status(302).setHeader('Location', `${process.env['HOST']}`).send('Redirecting to create poll');
             }
 
-            const voteExists = await kv.sismember(`poll:${pollId}:voted`, fid)
+            const voteExists = await kv.sismember(`poll:${pollId}:voted`, did)
             voted = voted || !!voteExists
 
-            if (fid > 0 && buttonId > 0 && buttonId < 5 && !results && !voted) {
+            if (did && buttonId > 0 && buttonId < 5 && !results && !voted) {
                 let multi = kv.multi();
                 multi.hincrby(`poll:${pollId}`, `votes${buttonId}`, 1);
-                multi.sadd(`poll:${pollId}:voted`, fid);
+                multi.sadd(`poll:${pollId}:voted`, did);
                 multi.expire(`poll:${pollId}`, POLL_EXPIRY);
                 multi.expire(`poll:${pollId}:voted`, POLL_EXPIRY);
                 await multi.exec();
@@ -51,7 +49,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             if (!poll) {
                 return res.status(400).send('Missing poll ID');
             }
-            const imageUrl = `${process.env['HOST']}/api/image?id=${poll.id}&results=${results ? 'false': 'true'}&date=${Date.now()}${ fid > 0 ? `&fid=${fid}` : '' }`;
+            const imageUrl = `${process.env['HOST']}/api/image?id=${poll.id}&results=${results ? 'false': 'true'}&date=${Date.now()}${ did ? `&did=${did}` : '' }`;
             let button1Text = "View Results";
             if (!voted && !results) {
                 button1Text = "Back"
@@ -78,7 +76,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           <meta name="sp:frame:button:2:action" content="post_redirect">
         </head>
         <body>
-          <p>${ results || voted ? `You have already voted. You clicked ${buttonId}` : `Your vote for ${buttonId} has been recorded for fid ${fid}.` }</p>
+          <p>${ results || voted ? `You have already voted. You clicked ${buttonId}` : `Your vote for ${buttonId} has been recorded for did ${did}.` }</p>
         </body>
       </html>
     `);
