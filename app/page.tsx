@@ -1,8 +1,8 @@
 import {PollCreateForm} from "./form";
 
 export let metadata = {
-  title: "Farcaster polls",
-  description: "Poll example for farcaster",
+  title: "Solarplex polls",
+  description: "Poll example for solarplex",
 };
 
 function VercelLogo(props: React.SVGProps<SVGSVGElement>) {
