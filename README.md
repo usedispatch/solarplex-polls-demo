@@ -5,9 +5,21 @@ A example Poll app using [Farcaster Frames](https://warpcast.notion.site/Farcast
 This example lets you create a poll and have users vote on it. The FrameAction is authenticated against a hub 
 so the votes cannot be spoofed (if `HUB_URL` is provided), and the results are stored in a redis database. 
 
-## Images
+## how to run locally
 ```
+# fetch vercel env
+vercel env pull .env.development.local
+
+# make sure to do this on m1 arm macs
 yarn add sharp --ignore-engines
+
+# and run like this
+PORT=9001 HOST=http://localhost:9001 yarn dev
+
+# and share http://localhost:9001/polls/ebac5550-bbf6-4d73-b10b-99f12d4a309f as the frame link
+
+# clicking 1 on the frame should call this api but thats where it fails right now.
+
 ```
 
 
