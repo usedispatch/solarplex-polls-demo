@@ -25,10 +25,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         }
 
         const showResults = req.query['results'] === 'true'
-        let votedOption: number | null = null
-        if (showResults && did) {
-            votedOption = await kv.hget(`poll:${pollId}:votes`, `${did}`) as number
-        }
+        // let votedOption: number | null = null
+        // if (showResults && did) {
+        //     votedOption = await kv.hget(`poll:${pollId}:votes`, `${did}`) as number
+        // }
 
         const pollOptions = [poll.option1, poll.option2, poll.option3, poll.option4]
             .filter((option) => option !== '');

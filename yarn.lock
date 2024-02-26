@@ -365,9 +365,14 @@
     tlds "^1.234.0"
     typed-emitter "^2.1.0"
 
-"@usedispatch/solarplex-frame-sdk@link:../solarplex-frame-sdk":
-  version "0.0.0"
-  uid ""
+"@usedispatch/solarplex-frame-sdk@^0.0.4":
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/@usedispatch/solarplex-frame-sdk/-/solarplex-frame-sdk-0.0.4.tgz#00aa2940ddee00683b6b6a88756f777a8b34ff29"
+  integrity sha512-4M2v7dW3uyJIi5ASN0H5pA7o/54fwo66lpL585eh6wTZhZ1Sf+Lhd8KKfrgwiTNPI75tbalrz/LKdbYw6AOlVA==
+  dependencies:
+    "@usedispatch/atproto-api" "0.7.8"
+    axios "^1.6.7"
+    cheerio "1.0.0-rc.12"
 
 "@vercel/kv@^1.0.1":
   version "1.0.1"
@@ -1393,6 +1398,7 @@ streamsearch@^1.1.0:
   integrity sha512-Mcc5wHehp9aXz1ax6bZUyY5afg9u2rv5cqQI3mRrYkGC8rW2hM02jWuwjtL++LS5qinSyhj2QfLyNsuc+VsExg==
 
 "string-width-cjs@npm:string-width@^4.2.0", string-width@^4.1.0:
+  name string-width-cjs
   version "4.2.3"
   resolved "https://registry.yarnpkg.com/string-width/-/string-width-4.2.3.tgz#269c7117d27b05ad2e536830a8ec895ef9c6d010"
   integrity sha512-wKyQRQpjJ0sIp62ErSZdGsjMJWsap5oRNihHhu6G7JVO/9jIB6UyevL+tXuOqrng8j/cxKTWyWUwvSTriiZz/g==
@@ -1416,6 +1422,7 @@ string.prototype.codepointat@^0.2.1:
   integrity sha512-2cBVCj6I4IOvEnjgO/hWqXjqBGsY+zwPmHl12Srk9IXSZ56Jwwmy+66XO5Iut/oQVR7t5ihYdLB0GMa4alEUcg==
 
 "strip-ansi-cjs@npm:strip-ansi@^6.0.1", strip-ansi@^6.0.0, strip-ansi@^6.0.1:
+  name strip-ansi-cjs
   version "6.0.1"
   resolved "https://registry.yarnpkg.com/strip-ansi/-/strip-ansi-6.0.1.tgz#9e26c63d30f53443e9489495b2105d37b67a85d9"
   integrity sha512-Y38VPSHcqkFrCpFnQ9vuSXmquuv5oXOKpGeT6aGrr3o3Gc9AlVa6JBfUSOCnbxGGZF+/0ooI7KrPuUSztUdU5A==
