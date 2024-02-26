@@ -65,7 +65,7 @@ export async function generateMetadata(
         other: {
             ...fcMetadata,
         },
-        metadataBase: new URL(process.env['HOST'] || '')
+        metadataBase: new URL(process.env['VERCEL_URL'] || '')
     }
 }
 function getMeta(
